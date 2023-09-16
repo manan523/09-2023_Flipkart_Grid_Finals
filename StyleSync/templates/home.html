@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<!--Code By Webdevtrick ( https://webdevtrick.com )-->
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>StyleSync - Cloth Recommendation System</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='jquery.pagepiling.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='loader.css')}}">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <style>
+    /** Code By Webdevtrick ( https://webdevtrick.com ) **/
+    @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700);
+    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Quicksand&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Raleway', sans-serif;
+      text-transform: none;
+    }
+
+    @media screen and (max-width: 767px) {
+      
+      .occasion-text {
+      font-size: 2rem;
+      text-emphasis: 2em;
+      font-weight: bold;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      
+      .occasion-text {
+        font-size: 3rem;
+        text-emphasis: 2em;
+        font-weight: bold;
+      }
+      
+    }
+
+    .vasu-section {
+      max-height: 100vh;
+      height: 90%; 
+      width: 100%;
+      z-index: 3;
+    }
+
+    .landing-page-heading {
+        color: #fff;
+        font-size: 3.3em;
+        text-align: center;
+    }
+
+    .landing-page-subheading {
+      text-transform: none;
+        font-family: 'Quicksand', sans-serif;
+        color: #eee;	
+      font-size: 2em;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      text-shadow: 0 5px 10px rgba(0,0,0,0);
+    }
+
+
+    .gender-text {
+      text-transform: none;
+        font-family: 'Quicksand', sans-serif;
+        color: #eee;	
+        font-size: 4em;
+    }
+
+    .mild-gradient-background {
+        /*background: #67B26F;  /* fallback for old browsers */
+        background-image: -webkit-linear-gradient(to right, #4B4443, #A19B9A) ;  /* Chrome 10-25, Safari 5.1-6 */
+        background-image: linear-gradient(to right, #4B4443, #A19B9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-position: right; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: auto;
+    }
+
+    .scandinavia-bg {
+      background: #fff;
+      background-image: url("https://img.freepik.com/premium-photo/various-hanging-cloths-different-colorw-clothing-rack-store-fashion-concept_96943-2075.jpg");  /* Chrome 10-25, Safari 5.1-6 */
+      background-image: url("https://img.freepik.com/premium-photo/various-hanging-cloths-different-colorw-clothing-rack-store-fashion-concept_96943-2075.jpg");
+      background-repeat: repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .frost-gradient {
+        background: aqua;  /* fallback for old browsers */
+        background-image: -webkit-linear-gradient(to right, #6441a5, #2a0845);  /* Chrome 10-25, Safari 5.1-6 */
+        background-image: linear-gradient(to right, #6441a5, #2a0845); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-position: right; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: auto;
+    }
+
+    .frost-gradient-2 {
+        background: aqua;  /* fallback for old browsers */
+        background-image: -webkit-linear-gradient(to right, #6441a5, #938fd1);  /* Chrome 10-25, Safari 5.1-6 */
+        background-image: linear-gradient(to right, #6441a5, #90ACB8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-position: right; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: auto;
+    }
+
+
+    
+
+    .gender-img {
+      width:250px;
+      height: 250px;
+
+    }
+
+
+    .occasion-image {
+      -webkit-filter: grayscale(60%) blur(10px);
+      filter: grayscale(60%) blur(10px) ;
+      max-height: 200px !important;
+    }
+
+    .card {
+      background: rgba(76, 175, 80, 0);
+      border: rgba(76, 175, 80, 0) solid 2px;
+    }
+
+
+    .occasion-text {
+      font-size: 2.5rem;
+      text-emphasis: 2em;
+      font-weight: bold;
+    }
+
+    .rounded-image {
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    
+    .uploaded-image {
+      max-height: 100%;
+    }
+    
+    .upload-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 220px);
+      justify-content: center;
+      align-items: center;
+      grid-row-gap: 20px;
+      grid-column-gap: 20px;
+    }
+
+    .upload-grid div.uploaded-image-outer {
+      width: 220px;
+      height: 220px;
+      background-color: #fff;
+      display: inline-block;
+      position: relative;
+    }
+
+    .remove-element {
+      display: none !important;
+    }
+
+
+    @media only screen and (max-width: 600px) {
+        .roundedImage {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          }
+    }
+
+    #heightOfUploader {
+      height: 500px;
+    }
+      
+      /* Small devices (portrait tablets and large phones, 600px and up) */
+      @media only screen and (min-width: 600px) {
+        .roundedImage {
+          
+          border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+      }
+      
+      /* Medium devices (landscape tablets, 768px and up) */
+      @media only screen and (min-width: 768px) {
+        .roundedImage {
+          width: 190px;
+          height: 190px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+
+        .gender-img {
+          width:300px;
+          height: 300px;
+        }
+      } 
+      
+      /* Large devices (laptops/desktops, 992px and up) */
+      @media only screen and (min-width: 992px) {
+        .roundedImage {
+          width: 250px;
+          height: 250px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .gender-img {
+          width: 400px;
+          height: 400px;
+        }
+
+        .uploaded-image {
+          max-height: 100%;
+        }
+
+        #heightOfUploader {
+          height: 500px;
+        }
+        
+        .upload-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 220px);
+          justify-content: center;
+          align-items: center;
+          grid-row-gap: 20px;
+          grid-column-gap: 20px;
+        }
+
+        .upload-grid div.uploaded-image-outer {
+          width: 220px;
+          height: 220px;
+        }
+      } 
+
+      .output-images {
+        max-width: 220px; 
+        max-height: 220px
+      }
+      
+      /* Extra large devices (large laptops and desktops, 1200px and up) */
+      @media only screen and (min-width: 1200px) {
+        .roundedImage {
+          width: 280px;
+          height: 280px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .final-image-holder {
+      max-height: 220px;
+      height: 220px;
+      position: relative;
+      animation-duration: 2s; /* don't forget to set a duration! */
+    }
+
+      @media only screen and (min-width: 1800px) {
+        .roundedImage {
+          width: 280px;
+          height: 280px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        
+        #heightOfUploader {
+          height: 700px;
+        }
+
+        .output-images {
+          max-width: 340px; 
+          max-height: 340px
+        }
+
+        .uploaded-image {
+          max-height: 100%;
+        }
+        
+        .upload-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 340px);
+          justify-content: center;
+          align-items: center;
+        }
+
+        .upload-grid div.uploaded-image-outer {
+          width: 340px;
+          height: 340px;
+        }
+
+        .final-image-holder {
+          max-height: 340px;
+          height: 340px;
+          position: relative;
+        }
+
+      }
+
+      @media only screen and (min-width: 1900px) {
+        .roundedImage {
+          width: 280px;
+          height: 280px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        
+        #heightOfUploader {
+          height: 700px;
+        }
+
+        .output-images {
+          max-width: 350px; 
+          max-height: 350px
+        }
+
+        .uploaded-image {
+          max-height: 100%;
+        }
+        
+        .upload-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 350px);
+          justify-content: center;
+          align-items: center;
+        }
+
+        .upload-grid div.uploaded-image-outer {
+          width: 350px;
+          height: 350px;
+        }
+
+        .final-image-holder {
+          max-height: 350px;
+          height: 350px;
+          position: relative;
+        }
+
+      }
+
+    .image-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: solid #ddd 2px;
+      color: #ddd;
+    }
+
+
+    .img-glow {
+      -moz-box-shadow: 0 0 5px #fff;
+      -webkit-box-shadow: 5px 5px 5px #fff;
+      box-shadow: 0px 0px 10px #fff;
+    }
+
+    #pp-nav li .active span, .pp-slidesNav .active span {
+      background-color: #fff;
+    }
+
+    .circle-images {
+      overflow: hidden;
+      height: 250px;
+      width: 250px;
+      border-radius: 125px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.8);
+      border: #333 solid 2px;
+    }
+
+    .circle-images:hover {
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.8);
+      border: #fff solid 2px;
+    }
+
+    .img-3d-shadow {
+      box-shadow: 0px 5px 10px rgba(0,0,0,0.6);
+    }
+
+    .img-3d-shadow-max {
+      box-shadow: 0px 15px 15px rgba(0,0,0,0.7);
+    }
+
+    .selected-occasion {
+      border: #fff solid 4px;
+      box-shadow: 0px 10px 20px rgba(255,255,255,0.5);
+    }
+
+    #cross {
+      background-color: Transparent;
+      background-repeat:no-repeat;
+      cursor:pointer;
+      position: absolute;
+      color: white;
+      top: -7.5px;
+      right: -7.5px;
+      height: 15px;
+      width: 15px;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    
+
+    #lightbox {
+      /** Default lightbox to hidden */
+      display: none;
+
+      /** Position and style */
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.8);
+    }
+
+    #lightbox.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      padding: 4px;
+      background-color: black;
+      border: 2px solid white;
+    }
+
+    .from-server {
+      cursor: pointer;
+      background-color: #FFF;
+    }
+
+    .uploaded-image-holder {
+      /*float:right;*/
+      display: inline-block;
+      height: 100%;
+      position: relative;
+    }
+
+    
+
+    .uploadButton {
+      border: 2px #484849 solid;
+      height: 90px;
+      width: 90px;
+      text-align: center;
+      border-radius: 45px;
+      cursor: pointer;
+    }
+  
+    .bounce {
+	-moz-animation: bounce 3s infinite;
+	-webkit-animation: bounce 3s infinite;
+	animation: bounce 3s infinite;
+}
+@-moz-keyframes bounce {
+  0%, 20%, 80%, 100% {
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+}
+@-webkit-keyframes bounce {
+  0%, 20%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 80%, 100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+}
+
+.question-mark-helper {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  height: 40px;
+  width: 40px;
+  z-index: 1000;
+}
+
+.custom-tooltip {
+    display:inline-block;
+    
+    text-align:left;
+}
+
+.custom-tooltip h3 {margin:12px 0;}
+
+.custom-tooltip .left {
+    min-width:200px;
+    max-width:400px;
+    top:50%;
+    right:100%;
+    margin-right:20px;
+    transform:translate(0, -50%);
+    padding:20px;
+    color:#666666;
+    background-color:#FFFFE0;
+    font-weight:normal;
+    font-size:13px;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    display:none;
+    border:1px solid #DCA;
+}
+
+.custom-tooltip:hover .left {
+    display:block;
+}
+
+.custom-tooltip .left i {
+    position:absolute;
+    top:50%;
+    left:100%;
+    margin-top:-12px;
+    width:12px;
+    height:24px;
+    overflow:hidden;
+}
+
+/*
+.custom-switch {
+  padding-left: 2.25rem;
+  padding-bottom: 1rem; 
+}
+
+.custom-control-label {
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  padding-bottom: 0.1rem;
+}
+
+.custom-switch .custom-control-label::before {
+  left: -2.25rem;
+  height: 2rem;
+  width: 3.5rem;   
+  pointer-events: all;
+  border-radius: 1rem;
+}
+
+.custom-switch .custom-control-label::after {
+  top: calc(0.25rem + 2px);
+  left: calc(-2.25rem + 2px);
+  height: calc(2rem - 4px);  
+  width: calc(2rem - 4px);   
+  background-color: #adb5bd;
+  border-radius: 2rem; 
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
+
+.reset-everything:hover {
+  background-color: #000;
+  color: #000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-switch .custom-control-label::after {
+    transition: none;
+  }
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: #000;
+  -webkit-transform: translateX(1.5rem);
+  transform: translateX(1.5rem);
+} */
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+}
+.checkbox:after, .checkbox:before {
+  font-family: FontAwesome;
+  font-feature-settings: normal;
+  -webkit-font-kerning: auto;
+          font-kerning: auto;
+  font-language-override: normal;
+  font-stretch: normal;
+  font-style: normal;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-weight: normal;
+  text-rendering: auto;
+}
+.checkbox label {
+  width: 90px;
+  height: 42px;
+  background: #ccc;
+  position: relative;
+  display: inline-block;
+  border-radius: 46px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.checkbox label:after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  left: 0;
+  top: -5px;
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.checkbox input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkbox input:hover + label:after {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+.checkbox input:checked + label:after {
+  left: 40px;
+}
+
+.border-mid:after {
+  content: '';
+  height: 80%; 
+  width: 1.5px;
+
+  position: absolute;
+  right: 0;
+  top: 5%; 
+
+  background-color: #fff; 
+}
+
+
+.model-5 .checkbox label {
+  background: #bbb;
+  height: 15px;
+  width: 70px;
+}
+.model-5 .checkbox label:after {
+  background: #fff;
+  top: -7.5px;
+  width: 30px;
+  height: 30px;
+}
+.model-5 .checkbox input:hover + label:after {
+  -webkit-transform: scale(1.4, 1.4);
+  transform: scale(1.4, 1.4);
+}
+.model-5 .checkbox input:checked + label {
+  background: #A26754;
+}
+.model-5 .checkbox input:checked + label:after {
+  background: #A26754;
+  left: 45px;
+}
+
+.br { 
+      display: block; 
+      margin-bottom: 0em; 
+  }
+
+
+  </style>
+</head>
+<body>
+  <div id="pagepiling">
+    <div class="section scandinavia-bg" style="text-align: center">
+      <div class="d-inline-flex flex-column align-items-center img-3d-shadow-max p-3" style="background-color: #fff; border-radius: 2px;"> 
+        <div class="d-inline-flex flex-column align-items-center" style="width: 100%; border:2.5px #484849 solid; border-radius: 2px; padding-left: 60px; padding-right: 60px; padding-top: 30px; padding-bottom: 30px;">
+          <div class="d-flex flex-column align-items-center justify-content-center">
+              <!--<h1 class="landing-page-heading" style="color: #484849; font-family: 'Playfair Display', serif;">
+                F&nbsp;&nbsp;A&nbsp;&nbsp;S&nbsp;&nbsp;H&nbsp;&nbsp;I&nbsp;&nbsp;O&nbsp;&nbsp;N&nbsp;&nbsp;I&nbsp;&nbsp;S&nbsp;&nbsp;T
+              </h1>-->
+              <div class="landing-page-heading" style="color: #484849; font-size: 5rem; font-family: 'Raleway', sans-serif;">
+                StyleSync
+              </div>     
+              <hr style="width: 70%; border: solid 1.5px #484849; background-color: #484849; border-radius: 0.75px; transform: translate(0, -15px)">
+              <a href="#secondSection" class="mt-2"><i class="fa fa-angle-down bounce" aria-hidden="true" style="color: #484849; font-size: 35px;"></i></a>
+            </div>
+          <div>
+              <!--<a href="#secondSection"><button type="button" class="btn pl-3 pr-3" style="background-color: rgb(238, 135, 0); color: #000">START</button></a>-->
+              
+            </div>
+        </div>
+        
+    </div>
+    </div>
+    <div class="section"  >
+    <div class="custom-tooltip question-mark-helper">
+      <i class="fa fa-question-circle" aria-hidden="true" style="font-size: 40px;"></i>
+      <div class="left">
+          <h3>Lorem Ipsum</h3>
+          <ul>
+              <li>Aliquam ac odio ut est aliquet tempor vitae sed arcu</li>
+              <li>Cras porttitor orci ac porta gravida</li>
+          </ul>
+          <i></i>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-12 mb-3 p-5">
+          <div class='container'>
+            <h2 class="landing-page-heading"><span style="color: #F2F2F2; font-size: 5rem">Select</span>&nbsp;&nbsp;<span style="color: #FBB95B; font-size: 5rem">Gender</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 border-mid">
+          <div class="row">
+            <div class="col-12">
+                <div class="d-flex flex-column align-items-center">
+                  <img src="{{url_for('static', filename='man_icon.svg')}}" id="male-gender" class="gender-img" />
+                </div>
+            </div>
+            <div class="col-12">
+                <h2 class='gender-text'></h2>
+            </div>
+          </div>
+        </div>
+        <div  class="col-6">
+            <div class="row">
+              <div class="col-12">
+                  <div class="d-flex flex-column align-items-center">
+                    <img src="{{url_for('static', filename='woman_icon.svg')}}" id="female-gender" class="gender-img" />
+                  </div>
+              </div>
+              <div class="col-12">
+                  <h2 class='gender-text'></h2>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="custom-tooltip question-mark-helper">
+        <i class="fa fa-question-circle" aria-hidden="true" style="font-size: 40px;"></i>
+        <div class="left">
+            <h3>Help</h3>
+            <h3>Help</h3>
+            <h3>Help</h3>
+            <ul>
+                <li>Upload outfit images representing your fashion taste to get <b>personalised recommendations</b></li>
+                <li>You can switch the personalisation ON/OFF by using the toggle</li>
+            </ul>
+            <i></i>
+        </div>
+      </div>
+      <div style="height: 100%; flex-direction: column;" class="d-flex flex-column justify-content-center" >
+        <div class="align-items-center">
+            <div class="row p-1">
+              <div class="col-12">
+                <div class='container' style="text-align: center;">
+                  <div class="landing-page-heading" style="color: #6B6463;">
+                    <div class="d-flex flex-column justify-content-center">
+                      <div class="d-flex flex-row align-items-center justify-content-center">
+                        <div class="d-flex" style="font-size: 5rem; color: #A26754">
+                          Visual
+                        </div>
+                        <div class="d-flex flex-column p-3 ml-2">
+                       <span style="font-size: 1.8rem; margin-bottom: 0px;" class="align-self-start">Preference</span>
+                          <span style="font-size: 1.8rem" class="align-self-start">Modelling</span>
+                        </div>
+                        <div class="d-flex ml-5">
+                          <div class="model-5">
+                            <div class="checkbox">
+                              <input type="checkbox" id="customSwitch1" checked/>
+                              <label></label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    <!--<div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                      <label class="custom-control-label" for="customSwitch1"></label>
+                    </div>-->  
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class=" d-flex flex-column align-items-center" id="heightOfUploader">
+          <div class='upload-grid' id="image-holders"></div>
+        </div>
+              <!--<div class="uploaded-image-outer d-flex align-items-center justify-content-center" id="upload-button-picker" style="text-align:center"><div class="uploadButton d-flex align-items-center justify-content-center img-3d-shadow"><i class="fa fa-upload align-self-center justify-self-center" aria-hidden="true" style="color: #6B6463; font-size: 40px;"></i></div></div> -->
+        <div class="container d-flex flex-column align-items-center align-self-end">
+          <!--<div class="d-flex flex-row align-items-center justify-content-center flex-wrap" id="image-holders"> -->
+          
+          <div class="d-flex flex-column p-1 mb-4" style="text-align: center;">
+            <form>
+              <div class="form-group">
+                <input type="file" accept=".gif,.jpg,.jpeg,.png" id="file-holder" class="form-control-file d-none" id="exampleFormControlFile1" style="background-color: #fff" multiple>
+              </div>  
+              <div class="d-flex flex-row justify-content-center align-self-center" id="button-group">
+                <button type="button" class="btn m-1 img-3d-shadow-max" id="upload-button-picker" onclick="triggerFileInput()" style="background-color: #f2f2f2; border: 2px #888 solid; border-radius: 10px;">Upload</button>
+                <button type="button" class="btn btn-danger m-1 img-3d-shadow-max" id="skip-button" style="border: 2px #8d5507 solid; border-radius: 10px;">Clear Images</button>
+                <button type="button" class="btn btn-success m-1 img-3d-shadow-max" id="upload-button" style=" border: 2px rgb(87, 6, 6) solid; border-radius: 10px;">Finalize Images</button>
+                <!--<button type="button" class="btn btn-success" id="clear-button">Skip Without Personalizing</button>--->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="row">
+        <div class="col-12">
+          <div class='container'>
+            <h2 class="landing-page-heading"><span style="color: #FFF; font-size: 5rem">Select</span>&nbsp;&nbsp;<span style="color: #FBB95B; font-size: 5rem">Occasion</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="custom-tooltip question-mark-helper">
+        <i class="fa fa-question-circle" aria-hidden="true" style="font-size: 40px;"></i>
+        <div class="left">
+            <h3>Lorem Ipsum</h3>
+            <ul>
+                <li>Aliquam ac odio ut est aliquet tempor vitae sed arcu</li>
+                <li>Cras porttitor orci ac porta gravida</li>
+            </ul>
+            <i></i>
+        </div>
+      </div>
+    <div class="d-flex flex-row align-items-center justify-content-center flex-wrap">
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Travel">
+        <img class="card-img" src="{{url_for('static', filename='occasion-travel.jpg')}}" alt="Card image" style="min-height: 250px; min-width: 250px; width: 120%; height: auto;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Travel")'>
+          <h3 class="card-title align-self-center occasion-text">Travel</h3>
+        </div>
+      </div>
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Prom">
+        <img class="card-img"  src="{{url_for('static', filename='occasion-prom.jpg')}}" alt="Card image" style="min-height: 250px; min-width: 250px; width: 120%; height: auto;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Prom")'>
+          <h3 class="card-title align-self-center occasion-text">Prom</h3>
+        </div>
+      </div>
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Party">
+        <img class="card-img" src="{{url_for('static', filename='occasion-party.jpg')}}" alt="Card image" style="min-height: 250px; min-width: 250px; width: 120%; height: auto;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Party")'>
+          <h3 class="card-title align-self-center occasion-text">Party</h3>
+        </div>
+      </div>
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Wedding">
+        <img class="card-img" src="{{url_for('static', filename='occasion-wedding.png')}}" alt="Card image" style="min-height: 250px; min-width: 250px; width: 100%; height: auto;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Wedding")'>
+          <h3 class="card-title align-self-center occasion-text">Wedding</h3>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row align-items-center justify-content-center flex-wrap">
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Office">
+        <img class="card-img" src="{{url_for('static', filename='occasion-office.jpg')}}" alt="Card image" style="min-height: 250px; min-width: 250px; width: 100%; height: auto;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Office")'>
+          <h3 class="card-title align-self-center occasion-text">Office</h3>
+        </div>
+      </div>
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Dating">
+        <img class="card-img" src="{{url_for('static', filename='occasion-date.jpg')}}" alt="Card image" style="min-height: 250px; min-width: 100%;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Dating")'>
+          <h3 class="card-title align-self-center occasion-text">Dating</h3>
+        </div>
+      </div>
+      <div class="circle-images m-4 text-white d-flex flex-column align-items-center card" data-occasion="Sports">
+        <img class="card-img" src="{{url_for('static', filename='occasion-gym.jpg')}}" alt="Card image" style="min-height: 250px; min-width: 250px; width: 100%; height: auto;">
+        <div class="card-img-overlay d-flex justify-content-center" onclick='setOccasion("Sports")'>
+          <h3 class="card-title align-self-center occasion-text">Workout</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="section">
+      
+      <div style="height: 100%" class="d-flex align-items-center justify-content-center flex-wrap">
+        <div class="custom-tooltip question-mark-helper remove-element">
+          <i class="fa fa-question-circle" aria-hidden="true" style="font-size: 40px;"></i>
+          <div class="left">
+              <h3>Lorem Ipsum</h3>
+              <ul>
+                  <li>Aliquam ac odio ut est aliquet tempor vitae sed arcu</li>
+                  <li>Cras porttitor orci ac porta gravida</li>
+              </ul>
+              <i></i>
+          </div>
+        </div>
+        
+        <div class="d-flex flex-column align-items-center">
+          <div class="row p-2 remove-element" id="success-remove">
+            <div class="col-12">
+              <div class='container' style="text-align: center;">
+                <div class="lds-default" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                <h2 id="finalResultStatus" style="color: #000">Processing...</h2>
+              </div>
+            </div>
+          </div>
+          <div id="before-submission">
+            <button type="button" id="get-predictions" class="btn btn-danger btn-lg p-3" style="font-size: 20px; border-radius: 40px;">GET RECOMMENDATIONS</button>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div  style="height: 60px; width: 60px; border-radius: 30px;  position: absolute; bottom: 40px; right: 40px;" class="d-flex align-items-center justify-content-center img-3d-shadow reset-everything remove-element">
+        <i class="fa fa-undo" aria-hidden="true" style="font-size: 30px;"></i>
+      </div>
+      <div class="column">
+        <div class="d-flex flex-column align-items-center p-2">
+          <div class="d-flex justify-content-between" style="width: 95%;">
+            <h2 class="landing-page-heading align-self-start" style="color: #A26754; font-size: 5rem; font-family: 'Raleway', sans-serif;">Results</h2>
+            <span class="remove-element" id="reset-whole"><i class="fa fa-undo"  aria-hidden="true" style="font-size: 5rem"></i></span>
+          </div>
+          <div class="finalpage" style="display:flex;flex-wrap:wrap;justify-content:center">
+
+        </div>
+      </div>
+      
+      </div> 
+    </div>
+  </div>
+  <div id="lightbox">
+
+  </div>
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script src="{{url_for('static', filename='jquery.pagepiling.js')}}"></script>
+  <script>
+    $(document).ready(function() {
+        $('#pagepiling').pagepiling({
+          sectionsColor: ['#fff', '#402E32',  '#fff', '#402E32', '#BCA6AA', '#fff'],
+          navigation: {
+            'textColor': '#fff',
+            'bulletsColor': '#222',
+            'position': 'right',
+            'tooltips': ['Home', 'Select Gender',  'Upload Photos', 'Select Occasion','Get Recommendation', 'Final Result']
+          },
+          anchors: ['firstSection', 'secondSection', 'thirdSection', 'fourthSection', 'fifthSection', 'sixthSection'],
+        });
+    });
+
+    var uploadButton = document.getElementById("upload-button-picker")
+    
+    var fileHolder = document.getElementById("file-holder");
+    var fileList = [];
+    var counter = 0
+    var mainHolder = document.getElementById("image-holders")
+    
+    function triggerFileInput() {
+      if (fileList.length == 10) {
+        alert("Can only upload 10 images.")
+        return 
+      }
+      fileHolder.click()
+    }
+
+
+    fileHolder.addEventListener('change', function(evnt) {
+      for (var i = 0; i < fileHolder.files.length && fileList.length < 10; i++) {
+        //fileList.push(fileInput.files[i])
+        
+        let num = counter + 1;
+        counter += 1;
+        let reader = new FileReader()
+        
+        reader.addEventListener('load', (event) => {
+          const res = event.target.result
+          var image = new Image()
+          if (fileList.length < 10) {
+            //var holder = '<div class="col-md-2 col-sm-3 col-3 mt-3 ml-3"><button id="cross" data-number=' + '"' + num + '"' + '>X</button>'
+            var holder = '<div class="uploaded-image-outer img-3d-shadow" style="text-align:center; border-radius: 10px;"><div class="d-inline-flex flex-column align-items-center" id="cross" data-number=' + '"' + num + '"' + '><i class="fa fa-times-circle" aria-hidden="true" style="color: #6b6463"></i></div><div class="uploaded-image-holder">'
+            holder += ('<img src=' + event.target.result + ' data-number=' + '"' + num + '"' + ' style="max-width: 100%; max-height: 100%" class="img-fluid mx-auto d-block uploaded-image"/></div></div>')
+            mainHolder.innerHTML = holder + mainHolder.innerHTML
+            if (fileList.length < 10) {
+              fileList.push([num, event.target.result])
+              document.getElementById("upload-button-picker").classList.remove('remove-element')
+            }
+            if (fileList.length >= 10) {
+              console.log("VASU!")
+              document.getElementById("upload-button-picker").classList.add('remove-element')
+            }
+            $('div#cross').click(function() { 
+              //console.log("VAU")//
+              let t = $(this).data('number')
+              console.log(t)
+              $(this).parent().remove()
+              for (var i = 0; i < fileList.length; i++) {
+                if (fileList[i][0] == t) {
+                  fileList.splice(i, 1)
+                }
+              }
+              document.getElementById("upload-button-picker").classList.remove('remove-element')
+            })
+          }
+          
+          //console.log(holder)
+        })
+        reader.readAsDataURL(fileHolder.files[i])
+      }
+    })
+
+    // Important util functions
+    var gender = -1
+    var occasion = -1
+
+    var maleBtn = document.getElementById("male-gender")
+    var femaleBtn = document.getElementById("female-gender")
+
+    maleBtn.addEventListener('click', function() {
+      maleBtn.classList.add('img-glow')
+      femaleBtn.classList.remove('img-glow')
+      gender = "male"
+      window.location.href="#thirdSection"
+    })
+
+    femaleBtn.addEventListener('click', function() {
+      femaleBtn.classList.add('img-glow')
+      maleBtn.classList.remove('img-glow')
+      gender = "female"
+      window.location.href="#thirdSection"
+    })
+
+    var occasionImages = document.querySelectorAll('[data-occasion]');
+
+
+    function getimg(occ,gen){
+        console.log(gen,occ)
+        if(gen=="male"){
+            if(skipBtn.checked != true && (occ=="Wedding" || occ=="Dating")){
+                if(occ=="Wedding"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://imagescdn.simons.ca/images/1340-23337-42-A1_3/colourful-garden-stretch-shirt-semi-slim-fit.jpg?__=3">
+                            <img style="padding:1%" width=280 height=400 src="https://houseofstori.com/cdn/shop/products/ICSH-12898-B_1_600x.jpg?v=1677319989">
+                            <img style="padding:1%" width=280 height=400 src="https://houseofstori.com/cdn/shop/products/ICSH-12909-B_1_600x.jpg?v=1677320108">
+                            <img style="padding:1%" width=280 height=400 src="https://i.etsystatic.com/17634941/r/il/34527e/1958811148/il_fullxfull.1958811148_togc.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://i.pinimg.com/474x/a1/db/fa/a1dbfa54828c3cd49e2edd499ff90506.jpg">
+                            </div>
+                    `
+                }
+                else if(occ=="Dating"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://i.pinimg.com/564x/7d/d3/c2/7dd3c2302b1f776397784f53f9567008.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-13-1615892383.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://i.pinimg.com/736x/a3/2c/91/a32c91cac7d7117e9b76f231637eafa3.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-12-1615892382.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-15-1615892384.jpg">
+                            </div>
+                    `
+                }
+            }
+            else{
+                if(occ=="Wedding"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://cdn.shopify.com/s/files/1/0606/5864/7273/files/TMSYPA2040Gold_500x.jpg?v=1686039353">
+                            <img style="padding:1%" width=280 height=400 src="https://cdn.shopify.com/s/files/1/0606/5864/7273/files/TMSYMA2009Pink_500x.jpg?v=1686034620">
+                            <img style="padding:1%" width=280 height=400 src="https://i.etsystatic.com/17634941/r/il/34527e/1958811148/il_fullxfull.1958811148_togc.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://rukminim2.flixcart.com/image/550/650/xif0q/sherwani/g/1/n/s-mens-indo-western-n-b-f-fashion-original-imagqhahh2fqwbpe.jpeg?q=90&crop=false">
+                            <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19735008/2023/5/24/f58bad27-955b-4604-9e01-001e50c3d0691684904611786-House-of-Pataudi-Men-Sherwani-6991684904611135-5.jpg">
+                            </div>
+                    `
+                }
+                else if(occ=="Sports"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://www.hidelt.com/cdn/shop/files/Untitleddesign-2023-08-09T155618.735_1445x.png?v=1691578430">
+                            <img style="padding:1%" width=280 height=400 src="https://www.hidelt.com/cdn/shop/files/Untitleddesign-2023-08-09T172201.006-min_1445x.png?v=1691582550">
+                            <img style="padding:1%" width=280 height=400 src="https://i.pinimg.com/736x/5b/ec/32/5bec32f8f3f618c682f25cc8bc466646.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://contents.mediadecathlon.com/p1724744/a8373278310c30c7ce0af8f5b36843c1/p1724744.jpg?format=auto&quality=70&f=650x0">
+                            <img style="padding:1%" width=280 height=400 src="https://assets.ajio.com/medias/sys_master/root/20230427/EbGh/644a9760d55b7d0c638458d0/-473Wx593H-420360217-charcoal-MODEL2.jpg">
+                            </div>
+                    `
+                }
+                else if(occ=="Party"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://www.bonsoir.co.in/cdn/shop/products/BLAZERB-220_3_large.jpg?v=1648618126">
+                            <img style="padding:1%" width=280 height=400 src="https://www.bonsoir.co.in/cdn/shop/products/BLAZERB-221B_1_large.jpg?v=1648618239">
+                            <img style="padding:1%" width=280 height=400 src="https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/3/1/tr:w-270,/31e7222D155_5Button_Blazer_1.jpg?rnd=20200526195200">
+                            <img style="padding:1%" width=280 height=400 src="https://tiimg.tistatic.com/fp/1/007/284/party-wear-mens-shirt-502.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://i.pinimg.com/564x/3d/0d/a9/3d0da9635465d5b693348f196344a829.jpg">
+                            </div>
+                    `
+                }
+                else if(occ=="Dating"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-1-1615892377.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-9-1615892381.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-5-1615892379.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://stylegirlfriend.com/wp-content/uploads/2022/04/city-casual-date-outfit.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://images.bewakoof.com/uploads/grid/app/casual-outfits-for-men-bewakoof-blog-16-1615892384.jpg">
+                            </div>
+                    `
+                }
+                else if(occ=="Office"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://imagescdn.planetfashion.in/img/app/product/6/639195-6358857.jpg?auto=format&w=494.40000000000003">
+                            <img style="padding:1%" width=280 height=400 src="https://img0.junaroad.com/uiproducts/19144082/zoom_1-1673108195.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://m.media-amazon.com/images/I/81oSWTV10nL._AC_UY1100_.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://img.tatacliq.com/images/i8/437Wx649H/MP000000014115326_437Wx649H_202208120321291.jpeg">
+                            <img style="padding:1%" width=280 height=400 src="https://cdn.shopclues.com/images1/thumbnails/116964/640/1/153318804-116964621-1678968116.jpg">
+                            </div>
+                    `
+                }
+                else if(occ=="Prom"){
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://i1.wp.com/theblacktux.com/blog/wp-content/uploads/2020/02/Blue-Prom-Suit.png?resize=645%2C900&ssl=1">
+                            <img style="padding:1%" width=280 height=400 src="https://d2rd7etdn93tqb.cloudfront.net/wp-content/uploads/2022/04/asos-mens-prom-suit-042122.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://i2.wp.com/theblacktux.com/blog/wp-content/uploads/2020/02/Gingham-Prom-Suit.png?resize=645%2C900&ssl=1">
+                            <img style="padding:1%" width=280 height=400 src="https://www.fjackets.com/blog/wp-content/uploads/2020/02/maroon-prom-suit.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1669669266-asos-design-country-wedding-skinny-wool-mix-blazer-in-navy-windowpan-1669669260.png?crop=1xw:1xh;center,top&resize=980:*">
+                            </div>
+                    `
+                }
+                else{
+                    return `<div style="margin:10% 0% 5%">
+                            <img style="padding:1%" width=280 height=400 src="https://www.merchantmarine.co.in/cdn/shop/products/5_8f5f4c2a-4b25-4cba-8168-19fe478768f6_600x.jpg?v=1662484189">
+                            <img style="padding:1%" width=280 height=400 src="https://thehouseofrare.com/cdn/shop/products/IMG_0040_890ac9f4-1774-451b-9186-7dba00fe3c68_765x.jpg?v=1668775840">
+                            <img style="padding:1%" width=280 height=400 src="https://www.beyoung.in/api/cache/catalog/products/plain_new_update_images_2_5_2022/travel_mode_on_t-shirt_for_men_base_31_5_2023_700x933.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://static01.nyt.com/images/2017/05/05/fashion/05DRESSCODES3/05DRESSCODES3-superJumbo.jpg">
+                            <img style="padding:1%" width=280 height=400 src="https://www.abhishti.com/cdn/shop/products/BHR-MN57_1_1080x.jpg?v=1679569840">
+                            </div>
+                    `
+                }
+              }
+
+            }
+          else{
+              if(occ=="Wedding"){
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://ik.imagekit.io/wb2spwtue/kreeva/tr:h-430,w-315,q-80,cm-pad_resize/media/catalog/product/k/f/kf-4532_gown.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://www.likeadiva.com/images/wedding/weddingcoll2023-5.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19816720/2022/9/8/bc88f5e1-55cb-4c42-b69a-1a242a7696ee1662617412324KAAJHWomenBlueEmbroideredPureCottonEthnicDresses1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://image.suratwholesaleshop.com/data/2023y/February/38384/Wedding-Wear-White-Cut-Dana-Work-Georgette-Gown-With-Dupatta-ZOYA-41006.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://ik.imagekit.io/wb2spwtue/kreeva/tr:h-430,w-315,q-80,cm-pad_resize/media/catalog/product/4/5/4521-1-min_1.jpg">
+                          </div>
+                  `
+              }
+              else if(occ=="Sports"){
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19193634/2023/6/12/cc5823ff-1f10-460f-8599-ad29ab19510a1686570894856-Reebok-Women-Bra-1381686570894436-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://imgs7.luluandsky.com/catalog/product/8/9/8907813538077_1.JPG">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/16394160/2023/5/15/839ddebf-177d-4ac8-b3f4-214bcac1614d1684151626121-Cultsport-Women-Black--Grey-Colourblocked-Tights-60316841516-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://image.clovia.com/media/clovia-images/images/275x412/clovia-picture-snug-fit-high-rise-active-tights-in-baby-pink-with-side-panels-680198.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://lanation.com/cdn/shop/products/performance-two-piece-gym-set-aqua-greenproduct-type-636681_800x.png?v=1688545688">
+                          </div>
+                  `
+              }
+              else if(occ=="Party"){
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19473744/2022/9/13/5b4fc687-b93b-4141-aeb6-1bd82db75e671663054576612-Antheaa-Women-Dresses-631663054576038-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/23322950/2023/5/22/e6589c62-264a-48a2-86d5-16e8c543c3261684741715065BAESDPinkFloralPrintGeorgetteFitFlareMidiDress1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17577118/2022/4/1/a430a24b-6f93-40d1-aad1-728e1e1453fc1648811094710-Sangria-Women-Blue--White-Floral-A-Line-Maxi-Dress-911164881-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/11435332/2020/2/13/541ca4c6-e397-4358-8a4b-7a5dec5327951581594896028-Miss-Chase-Women-Burgundy-Lace-Insert-Maxi-Dress-57415815948-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/18659986/2022/6/7/460b2205-9f40-4e8c-aa4b-527d27fd0f4a1654605536274Dresses1.jpg">
+                          </div>
+                  `
+              }
+              else if(occ=="Dating"){
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/13940082/2021/11/2/7eeb8391-0179-4218-9cb8-d3032e7acd901635852358531-W-Women-Green-Embroidered-Fit-and-Flare-Dress-97216358523580-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19351058/2022/8/17/f4fccf30-e569-4f4b-acbb-7ed400ce7bb51660721413517-Anayna-Womens-Printed-Tier-Dress-6161660721413030-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/18076456/2022/5/14/b7758cd5-d207-4c2c-9c37-5bc408d4a4451652524598849-Athena-Women-Black-Seersucker-A-Line-Midi-Dress-556165252459-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17003548/2022/2/1/232a3d6f-61a8-4840-ac75-03d8bedde8bf1643705533545TokyoTalkiesBlueDress1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/5649880/2018/5/10/9524ebfc-5e55-416b-9e9f-69ffe6aa842c1525933779435-SASSAFRAS-Women-Beige-Solid-Shirt-Dress-3431525933779259-1.jpg">
+                          </div>
+                  `
+              }
+              else if(occ=="Office"){
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://cdn.shopify.com/s/files/1/0266/6276/4597/files/300950438BLACK_1.jpg?v=1692789756">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19459128/2022/8/10/bf9c2732-2f89-497a-b26f-c9782ad87bde1660122332164SelviaLavenderPolyesterViscoseBlendVNeckShirtStyleTop1.jpg">
+                          <img style="padding:1%" width=300 height=400 src="https://m.media-amazon.com/images/I/61TEmPJFduL._SL1500_.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/19987834/2022/11/3/e4a02d81-fd7c-4de9-a5f5-717d2a9d492d1667479402947-Selvia-Women-White-Solid-Formal-Shirt-8021667479402354-1.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/16542192/2022/1/10/a151dbde-96bb-43b0-b9c0-4d145ae4c5a71641798148926MagMensCottonNavyBlueKurtaWhitePajamaSetformenRG-50416-36Jac1.jpg">
+                          </div>
+                  `
+              }
+              else if(occ=="Prom"){
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://images-cdn.ubuy.co.in/633fff865cb62e12b67097b6-sweetheart-ball-gown-prom-dress-2022.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://www.sherrihill.com/dw/image/v2/BDBR_PRD/on/demandware.static/-/Sites-master-catalog-sherrihill/default/dw427e809c/images/Sherri-Hill-55345-fuchsia-51753.jpg?sw=630&sh=966">
+                          <img style="padding:1%" width=280 height=400 src="https://images-cdn.ubuy.co.in/6352639943e617409f2af333-geshun-women-39-s-spaghetti-strap.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://m.media-amazon.com/images/I/61KAP+Cpc9L._AC_UY1100_.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://www.ever-pretty.co.uk/cdn/shop/products/EP00667DP-R_900x.jpg?v=1673517708">
+                          </div>
+                  `
+              }
+              else{
+                  return `<div style="margin:10% 0% 5%">
+                          <img style="padding:1%" width=280 height=400 src="https://img3.junaroad.com/uiproducts/20161038/zoom_0-1691607682.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://i.etsystatic.com/20767266/r/il/0fa445/3716517388/il_570xN.3716517388_pwxt.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/22190266/2023/3/15/19167bfe-a4d2-4e1e-8140-f0ab9083dc851678859707631-Brown-and-Black-Animal-Zig-Zag-Print-Accordion-Pleated-Midi--2.jpg">
+                          <img style="padding:1%" width=280 height=400 src="https://www.abhishti.com/cdn/shop/products/abhishti_20-feb07428_std_800x.jpg?v=1673078737">
+                          <img style="padding:1%" width=280 height=400 src="https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/catalog/product/1/e/1ebf724DRS04792_3.jpg?rnd=20200526195200">
+                          </div>
+                  `
+              }
+        }
+
+    }
+
+    var isUploaded = false
+    var useFiles = false
+
+    var clearButton = document.getElementById("skip-button")
+    var uploadBtn = document.getElementById("upload-button")
+    var skipBtn = document.getElementById("customSwitch1")
+    var submitBtn = document.getElementById("get-predictions")
+    var finalStatusText = document.getElementById("finalResultStatus")
+    var finalImageHolder = document.getElementById("post-submission")
+    var task_id = -1
+    var resetButton = document.getElementById("reset-whole")
+    var loaderAnim = document.getElementById("loader")
+
+    function setOccasion(o) {
+      occasion = o
+      window.location.href="#fifthSection"
+      for (let i = 0; i < occasionImages.length; i++) {
+        occasionImages[i].classList.remove('selected-occasion')
+      }
+      document.querySelector(`[data-occasion=${o}`).classList.add('selected-occasion')
+      document.querySelector(".finalpage").innerHTML=getimg(occasion,gender);
+      submitBtn.classList.remove('disabled')
+      submitBtn.classList.remove('remove-element')
+      submitBtn.disabled = false
+      finalStatusText.innerHTML = " "
+      document.getElementById('success-remove').classList.add('remove-element')
+    }
+    // Uploading and Checking Loop
+
+
+
+    uploadBtn.addEventListener('click', function() {
+      if (fileList.length < 10) {
+        alert("Less than 10 images, upload more!")
+      } else {
+        useFiles = true
+        window.location.href= "#fourthSection"
+      }
+    }) 
+
+    skipBtn.addEventListener('click', function() {
+      if (skipBtn.checked == true) {
+        $('#button-group button').removeAttr('disabled');
+        useFiles = true;
+      }
+      else {
+        $('#button-group button').attr('disabled','disabled');
+        useFiles = false;
+        window.location.href= "#fourthSection"
+      }
+    }) 
+
+    clearButton.addEventListener('click', function() {
+      fileList = []
+      while(mainHolder.childElementCount > 0) {
+        mainHolder.removeChild(mainHolder.firstChild)
+      }
+      document.getElementById("upload-button-picker").classList.remove('remove-element')
+    })
+
+    submitBtn.addEventListener('click', () => {
+      var formData = new FormData()
+      if (gender == -1) {
+          alert("Gender Not Selected!")
+          window.location.href="#secondSection"
+          return
+        }
+        if (occasion == -1) {
+          alert("Occasion not selected!")
+          window.location.href="#fourthSection"
+          return 
+        }
+        formData.append("gender", gender)
+        formData.append("occasion", occasion)
+      if (skipBtn.checked) {
+        console.log(fileList)
+        if (fileList.length < 10) {
+          alert("Not enough images uploaded!")
+          window.location.href="#thirdSection"
+          return 
+        }
+        formData.append("use_files", true)
+        let uploadList = []
+        for (let ind= 0; ind < fileList.length; ind++) {
+          uploadList.push(fileList[ind][1])
+        }
+        formData.append('files', uploadList)
+        console.log(uploadList)
+      } else {
+        formData.append('files', [])
+        formData.append("use_files", false)
+      }
+      submitBtn.classList.add('disabled')
+      submitBtn.classList.add('remove-element')
+      submitBtn.disabled = true
+      finalStatusText.innerHTML = "Fetching Result..."
+      document.getElementById('success-remove').classList.remove('remove-element')
+      const myTimeout = setTimeout(getResult, 6000);
+    })
+
+
+    function getResult() {
+            finalStatusText.innerHTML = "Success!"
+
+            window.location.href="#sixthSection"
+
+
+    }
+
+    resetButton.addEventListener('click', ()  => {
+      resetButton.classList.add('remove-element')
+      submitBtn.classList.remove('disabled')
+      submitBtn.disabled = false
+      document.getElementById('success-remove').style.display = null
+      submitBtn.classList.remove('remove-element')
+      submitBtn.style.display = null
+      finalImageHolder.innerHTML = ""
+      finalStatusText.innerHTML = "GET PREDICTIONS"
+      window.location.href="#fourthSection"
+    })
+
+
+    function showSuccessImages(imageNames) {
+      document.getElementById("success-remove").classList.add('remove-element')
+      finalImageHolder.innerHTML = ""
+      let imageOptions = imageNames.split('|')
+      console.log(imageOptions)
+      if (imageOptions[0] == 'ERR') {
+        
+          submitBtn.disabled = false
+          submitBtn.disabled = false
+          submitBtn.classList.remove('disabled')
+      } else {
+          resetButton.classList.remove('remove-element')
+          document.getElementById('success-remove').style.display = "none"
+          submitBtn.style.display = "none"
+        for (imageOption in imageOptions) {
+          
+          let node = document.createRange().createContextualFragment(getImageTag(imageOptions[imageOption]))
+          finalImageHolder.appendChild(node)
+          //finalImageHolder.innerHTML = getImageTag(imageOptions[imageOption]) + finalImageHolder.innerHTML
+        }
+      }
+      
+      //finalImageHolder
+    }
+
+    function getStarting() {
+      return '<div class="final-image-holder from-server img-3d-shadow animate__animated animate__fadeIn d-flex align-items-center" style="border-radius: 10px;"><img src="static/images/'
+    }
+
+    function getEnd() {
+      return '.jpg")}}" onclick="activateLightBox(this)" class="img-fluid  mx-auto d-block uploaded-image output-images" style="max-height: 100%; max-width: 100%"/></div>'
+    }
+
+    function getImageTag(imageName) {
+      console.log(imageName)
+      let ImageTag = getStarting() + imageName + getEnd() 
+      console.log(ImageTag)
+      return ImageTag
+    }
+
+    var lightbox = document.getElementById('lightbox')
+
+    function activateLightBox(item) {   
+      //console.log(item.src)
+      lightbox.classList.add('active')
+      const img = document.createElement('img')
+      img.src = item.src
+      while(lightbox.firstChild) {
+        lightbox.removeChild(lightbox.firstChild)
+      }
+      lightbox.appendChild(img)
+    }
+
+    lightbox.addEventListener('click', e => {
+      if (e.target !== e.currentTarget) return 
+      lightbox.classList.remove('active')
+    })
+
+
+  </script>
+</body>
+</html>

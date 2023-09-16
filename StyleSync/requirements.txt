@@ -1,0 +1,13 @@
+torch
+torchvision
+pandas
+numpy
+Pillow
+scikit-learn
+scipy
+matplotlib
+flask
+mlq
+streamlit
+keras
+tensorflow
